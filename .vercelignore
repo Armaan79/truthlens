@@ -1,0 +1,11 @@
+.venv/
+venv/
+__pycache__/
+*.bat
+installed-packages-backup.txt
+SetupGuide.txt
+train_model.py
+train_phishing_model.py
+test_search.py
+data/Fake.csv
+data/True.csv

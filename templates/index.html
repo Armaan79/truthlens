@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthLens</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%2319dca0'/></svg>">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div id="pageLoader"><div class="pl-ring"></div><div class="logo">Truth<span>Lens</span></div></div>
+
+<nav class="navbar">
+    <div class="logo">Truth<span>Lens</span></div>
+
+<div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#checker">Check News</a>
+    <a href="#url-checker">Check URL</a>
+</div>
+
+</nav>
+
+<section class="hero" id="home">
+    <h1 class="fade-up">See Beyond the <span>Headline.</span></h1>
+    <p class="fade-up">AI-powered misinformation detection for news, headlines and claims.</p>
+    <div class="hero-stats fade-up">
+        <div><b>3</b><small>Analysis layers</small></div>
+        <div><b>40+</b><small>Rated publishers</small></div>
+        <div><b>15</b><small>Fact-checkers tracked</small></div>
+    </div>
+</section>
+
+<div class="checker-grid">
+
+<section class="checker" id="checker">
+    <h2>Check News</h2>
+    <p>Paste a news article, headline or claim.</p>
+
+<textarea id="newsText" maxlength="5000" placeholder="Paste your content here..."></textarea>
+
+<div class="input-footer">
+    <span id="charHint">30+ characters recommended</span>
+    <span><strong id="charCount">0</strong> / 5000</span>
+</div>
+<div class="char-meter"><div id="charMeter"></div></div>
+
+<div class="samples">
+    <span>Try:</span>
+    <button type="button" class="chip" data-text="UNESCO declared Jana Gana Mana the best national anthem in the world">Viral forward</button>
+    <button type="button" class="chip" data-text="ISRO successfully launched Chandrayaan-3 from Sriharikota">Space news</button>
+    <button type="button" class="chip" data-text="RBI keeps repo rate unchanged at 6.5%">Economy</button>
+</div>
+
+<div class="button-row">
+    <button id="checkButton">Check News</button>
+    <button id="deleteButton">Delete</button>
+</div>
+
+<div id="result"></div>
+
+<div id="history" class="history" hidden>
+    <div class="history-head"><h3>Recent checks</h3><button type="button" id="clearHistory">Clear</button></div>
+    <ul id="historyList"></ul>
+</div>
+
+</section>
+
+<section class="checker url-checker" id="url-checker">
+    <h2>Check URL</h2>
+    <p>Enter a website URL to detect potential phishing threats.</p>
+
+<input type="url" id="urlText" placeholder="Enter or paste a URL here...">
+
+<div class="button-row">
+    <button type="button" id="urlButton">Check URL</button>
+    <button type="button" id="urlDeleteButton">Delete</button>
+</div>
+
+<div id="urlResult"></div>
+
+</section>
+
+</div>
+
+<footer>TruthLens © 2026 · <small>Enter = check · Shift+Enter = new line · Ctrl+Delete = clear</small></footer>
+
+<button id="toTop" type="button" aria-label="Back to top">↑</button>
+<div id="toast"></div>
+
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

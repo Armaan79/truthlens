@@ -1,0 +1,14 @@
+node_modules/
+venv/
+env/
+__pycache__/
+dist/
+build/
+.env
+*.log
+data/*.csv
+!data/evidence_rules.csv
+.venv/
+
+# Trained models must be committed for deployment
+!model/

@@ -1,0 +1,211 @@
+TRUTHLENS - PROJECT SETUP & RESTART GUIDE
+===============================================
+
+This file explains how to set up and run the TruthLens project on another Windows device.
+
+PROJECT
+-------
+TruthLens: AI-Powered Misinformation Detection Platform
+
+CURRENT FEATURES
+----------------
+1. News / claim misinformation detection
+2. Web evidence search and evidence analysis
+3. Phishing URL detection
+4. AI-generated image authenticity analysis (being added)
+
+IMPORTANT
+---------
+Do NOT copy the virtual environment (.venv) to another computer.
+Create a new virtual environment on the new computer and install the
+required packages again.
+
+STEP 1 - INSTALL REQUIRED SOFTWARE
+-----------------------------------
+Install:
+- Python
+- VS Code
+- Git (optional, if cloning from GitHub)
+
+STEP 2 - GET THE PROJECT
+------------------------
+If using GitHub:
+
+    git clone YOUR_GITHUB_REPOSITORY_URL
+
+Then open the TruthLens project folder in VS Code.
+
+If copying the project manually, copy the project folder to the new device.
+
+STEP 3 - CREATE A VIRTUAL ENVIRONMENT
+-------------------------------------
+Open the VS Code terminal inside the TruthLens project folder:
+
+    python -m venv .venv
+
+This creates a Python virtual environment named .venv.
+
+STEP 4 - ACTIVATE THE VIRTUAL ENVIRONMENT
+-----------------------------------------
+On Windows PowerShell:
+
+    .venv\Scripts\Activate.ps1
+
+The terminal should then show:
+
+    (.venv)
+
+If PowerShell blocks activation:
+
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+Then activate again:
+
+    .venv\Scripts\Activate.ps1
+
+STEP 5 - INSTALL PACKAGES
+-------------------------
+If requirements.txt exists:
+
+    pip install -r requirements.txt
+
+Otherwise install the current packages:
+
+    pip install flask pandas scikit-learn joblib requests feedparser beautifulsoup4
+
+For the AI image detection feature:
+
+    pip install transformers torch pillow
+
+STEP 6 - CHECK PROJECT STRUCTURE
+--------------------------------
+Important project files/folders include:
+
+    app.py
+    news_search.py
+    evidence_engine.py
+    phishing_detector.py
+    train_phishing_model.py
+    templates/
+    static/
+    data/
+    model/
+
+The model/ folder must contain the trained model files required by
+the project.
+
+STEP 7 - RUN TRUTHLENS
+----------------------
+Activate the environment:
+
+    .venv\Scripts\Activate.ps1
+
+Run Flask:
+
+    python app.py
+
+Open:
+
+    http://127.0.0.1:5000
+
+STEP 8 - MODEL FILES
+--------------------
+TruthLens uses trained .pkl model files.
+
+Make sure the required files are present inside model/.
+
+If they are not backed up or included in GitHub, the corresponding
+training scripts and datasets will be needed to create them again.
+
+STEP 9 - AI IMAGE DETECTION
+---------------------------
+The AI-generated image detection feature is being integrated using
+a pretrained AI model.
+
+Planned flow:
+
+    Upload Image
+          |
+          v
+       Flask
+          |
+          v
+    AI Image Model
+          |
+          v
+    Authenticity Analysis
+          |
+          v
+    Result + Confidence
+
+The feature should be presented as image authenticity analysis, not
+as a guaranteed way to prove an image is AI-generated.
+
+STEP 10 - DAILY DEVELOPMENT
+---------------------------
+Before working:
+
+    .venv\Scripts\Activate.ps1
+
+Run the project:
+
+    python app.py
+
+When finished, optionally run:
+
+    deactivate
+
+GITHUB
+------
+Do NOT upload the .venv folder to GitHub.
+
+Your .gitignore should include:
+
+    .venv/
+    __pycache__/
+    *.pyc
+
+Keep requirements.txt in the project so another computer can install
+the dependencies with:
+
+    pip install -r requirements.txt
+
+QUICK SETUP ON ANOTHER COMPUTER
+-------------------------------
+    1. Install Python
+    2. Get the TruthLens project
+    3. Open the project folder in VS Code
+    4. python -m venv .venv
+    5. .venv\Scripts\Activate.ps1
+    6. pip install -r requirements.txt
+    7. python app.py
+    8. Open http://127.0.0.1:5000
+
+BACKUP CHECKLIST
+----------------
+    [ ] app.py
+    [ ] news_search.py
+    [ ] evidence_engine.py
+    [ ] phishing_detector.py
+    [ ] training scripts
+    [ ] templates/
+    [ ] static/
+    [ ] data/
+    [ ] model/
+    [ ] requirements.txt
+    [ ] .gitignore
+
+IMPORTANT:
+The .venv folder does not need to be backed up. Recreate it on each
+computer instead.
+
+QUICK START (WINDOWS)
+---------------------
+Double-click run.bat. The first run creates .venv and installs the
+packages; later runs start the app straight away and open the browser.
+
+Health check: http://127.0.0.1:5000/health
+
+IMPORTANT: data/evidence_rules.csv is required. Both news_search.py and
+evidence_engine.py read it at startup. It is now allowed in .gitignore
+("!data/evidence_rules.csv") so it is backed up with the code.
